@@ -1,0 +1,31 @@
+server:
+  port: 8085
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      preferIpAddress: true
+
+spring:
+  application:
+    name: sgq-compliance-api
+  cloud:
+    gateway:
+      routes:
+        - id: standard-managements
+          uri: http://localhost:80
+          predicates:
+            - Path=/standard-managements**
+        - id: consulting-advisories
+          uri: http://localhost:80
+          predicates:
+            - Path=/consulting-advisories**
+
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+  main:
+    web-application-type: reactive
