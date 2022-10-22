@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka:8761/eureka
     instance:
       preferIpAddress: true
 
@@ -15,11 +15,11 @@ spring:
     gateway:
       routes:
         - id: standard-managements
-          uri: http://localhost:80
+          uri: http://cluemock:80
           predicates:
             - Path=/standard-managements**
         - id: consulting-advisories
-          uri: http://localhost:80
+          uri: http://cluemock:80
           predicates:
             - Path=/consulting-advisories**
 
